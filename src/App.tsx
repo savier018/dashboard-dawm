@@ -2,6 +2,8 @@ import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import BasicTable from './components/BasicTable';
 import Indicator from './components/Indicator';
 import Summary from './components/Summary';
+import ControlPanel from './components/ControlPanel';
+import WeatherChart from './components/WeatherChart';
 import './App.css'
 
 function App() {
@@ -16,6 +18,12 @@ function App() {
       </Grid>
       <Grid xs={12} md={6} lg={12} >
         <BasicTable />
+      </Grid>
+      <Grid xs={12} lg={10}>
+        <WeatherChart></WeatherChart>
+      </Grid>
+      <Grid xs={12} lg={2}>
+        <ControlPanel />
       </Grid>
     </Grid>
   )
