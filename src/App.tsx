@@ -1,9 +1,10 @@
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import Grid from '@mui/material/Unstable_Grid2';
 import BasicTable from './components/BasicTable';
 import Indicator from './components/Indicator';
 import Summary from './components/Summary';
 import ControlPanel from './components/ControlPanel';
 import WeatherChart from './components/WeatherChart';
+import Title from './components/Title';
 import { useEffect, useState } from 'react';
 import './App.css'
 
@@ -95,6 +96,11 @@ function App() {
 
   return (
     <Grid container spacing={5}>
+      <Grid xs={12} lg={12}>
+
+        <Title />
+
+      </Grid>
       <Grid xs={6} lg={4}>
 
         {indicators[0]}
@@ -155,7 +161,7 @@ function App() {
 
       </Grid>
 
-      <Grid xs={12} lg={8}>
+      <Grid xs={12} lg={12}>
 
         <WeatherChart></WeatherChart>
 

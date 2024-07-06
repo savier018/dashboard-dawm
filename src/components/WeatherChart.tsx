@@ -1,46 +1,64 @@
-import { Chart } from "react-google-charts";
-import Paper from '@mui/material/Paper';
+import React, { useEffect, useState } from 'react';
+import { Chart } from 'react-google-charts';
 
-export default function WeatherChart() {
+const WeatherChart: React.FC = () => {
+    const [chartData, setChartData] = useState([['Fecha-Hora', 'Temperatura (°C)', 'Humedad (%)', 'Velocidad del viento (m/s)']]);
 
-    {/* Configuración */}
+    useEffect(() => {
 
-    let options = {
-        title: "Precipitación, Humedad y Nubosidad vs Hora",
-        curveType: "function",
-        legend: { position: "right" },
-    }
+        (async () => {
 
-    {/* Datos de las variables meteorológicas */}
+            {/* Request */ }
 
-    const data = [
-        ["Hora", "Precipitación", "Humedad", "Nubosidad"],
-        ["03:00", 13, 78, 75],
-        ["06:00", 4, 81, 79],
-        ["09:00", 7, 82, 69],
-        ["12:00", 3, 73, 62],
-        ["15:00", 4, 66, 75],
-        ["18:00", 6, 64, 84],
-        ["21:00", 5, 77, 99]
-    ];
+            let API_KEY = "acd89c554aa31e18546c9194118b8bea"
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Guayaquil&mode=xml&appid=${API_KEY}`)
+            let savedTextXML = await response.text();
 
-    {/* JSX */}
+            {/* XML Parser */ }
+
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(savedTextXML, "application/xml");
+
+            {/* Arreglo para agregar los resultados */ }
+
+            const tiempo = xml.getElementsByTagName('time');
+            const data = [];
+
+            for (let i = 0; i < tiempo.length; i++) {
+                let timeFrom = tiempo[i].getAttribute('from');
+                let temperatura = parseFloat(tiempo[i].getElementsByTagName('temperature')[0].getAttribute('value')) - 273.15;
+                let temperatureCelsiusFixed = parseFloat(temperatura.toFixed(2));
+                let humedad = parseFloat(tiempo[i].getElementsByTagName('humidity')[0].getAttribute('value'));
+                let velocidadViento = parseFloat(tiempo[i].getElementsByTagName('windSpeed')[0].getAttribute('mps'));
+                data.push([timeFrom, temperatureCelsiusFixed, humedad, velocidadViento]);
+            }
+
+            setChartData([['Fecha-Hora', 'Temperatura (°C)', 'Humedad (%)', 'Velocidad del viento (m/s)'], ...data]);
+        })()
+    }, [])
+
+    const options = {
+        title: 'Temperatura, humedad, velocidad del viento vs Hora',
+        hAxis: { 
+            title: 'Time',
+            textStyle: {
+                fontSize: 10 // Ajusta el tamaño del texto
+            },
+         },
+        legend: { position: 'bottom' }
+    };
 
     return (
-        <Paper
-            sx={{
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column'
-            }}
-        >
-            <Chart
-                chartType="LineChart"
-                data={data}
-                width="100%"
-                height="400px"
-                options={options}
+        <Chart
+            chartType="LineChart"
+            width="100%"
+            height="500px"
+            data={chartData}
+            options={options}
         />
-        </Paper>
-    )
-}
+    );
+};
+
+export default WeatherChart;
+
+
