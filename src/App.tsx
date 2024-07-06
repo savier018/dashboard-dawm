@@ -39,17 +39,44 @@ function App() {
         en el arreglo de resultados
                    */}
 
-      let location = xml.getElementsByTagName("location")[1]
+      let nombreCiudad = xml.getElementsByTagName("name")[0]
+      const ciudad = nombreCiudad.textContent;
 
-      let geobaseid = location.getAttribute("geobaseid")
-      dataToIndicators.push(["Location", "geobaseid", geobaseid])
+      let nombrePais = xml.getElementsByTagName("country")[0]
+      const pais = nombrePais.textContent;
+
+      let location = xml.getElementsByTagName("location")[1]
+      dataToIndicators.push([ciudad, "País", pais])
 
       let latitude = location.getAttribute("latitude")
-      dataToIndicators.push(["Location", "Latitude", latitude])
+      dataToIndicators.push(["Latitud", "Valor", latitude])
 
       let longitude = location.getAttribute("longitude")
-      dataToIndicators.push(["Location", "Longitude", longitude])
+      dataToIndicators.push(["Longitud", "Valor", longitude])
 
+      let valorPrecipitacion = xml.getElementsByTagName("precipitation")[0]
+      let probabilidadPrecipitacion = valorPrecipitacion.getAttribute("probability")
+      dataToIndicators.push(["Precipitación", "Probabilidad", probabilidadPrecipitacion])
+
+      let velocidadViento = xml.getElementsByTagName("windSpeed")[0]
+      let valorVelocidadViento = velocidadViento.getAttribute("mps")
+      let unidadesVelocidadViento = velocidadViento.getAttribute("unit")
+      dataToIndicators.push(["Velocidad del viento", unidadesVelocidadViento, valorVelocidadViento])
+
+      let temperatura = xml.getElementsByTagName("temperature")[0]
+      let valorTemperatura = temperatura.getAttribute("value")
+      let valorCelsius = parseFloat(valorTemperatura) - 273.15
+      let valorCelsiusFixed = parseFloat(valorCelsius.toFixed(2));
+      let valorCelsiusFixedConGrado = `${valorCelsiusFixed}°C`;
+      dataToIndicators.push(["Temperatura", "Celsius", valorCelsiusFixedConGrado])
+
+
+      let seSienteComo = xml.getElementsByTagName("feels_like")[0]
+      let valorSeSienteComo = seSienteComo.getAttribute("value")
+      let valorCelsiusSeSienteComo = parseFloat(valorSeSienteComo) - 273.15
+      let valorCelsiusSeSienteComoFixed = parseFloat(valorCelsiusSeSienteComo.toFixed(2))
+      let valorCelsiusSeSienteComoConGrado = `${valorCelsiusSeSienteComoFixed}°C`;
+      dataToIndicators.push(["Se siente como", "Celsius", valorCelsiusSeSienteComoConGrado]);
       //console.log(dataToIndicators)
 
       {/* Renderice el arreglo de resultados en un arreglo de elementos Indicator */ }
@@ -68,7 +95,7 @@ function App() {
 
   return (
     <Grid container spacing={5}>
-      <Grid xs={6} lg={2}>
+      <Grid xs={6} lg={4}>
 
         {indicators[0]}
 
@@ -76,7 +103,7 @@ function App() {
 
       </Grid>
 
-      <Grid xs={6} lg={2}>
+      <Grid xs={6} lg={4}>
 
         {indicators[1]}
 
@@ -84,27 +111,60 @@ function App() {
 
       </Grid>
 
-      <Grid xs={6} lg={2}>
+      <Grid xs={6} lg={4}>
 
         {indicators[2]}
 
         {/* <Indicator title='Precipitación' subtitle='Probabilidad' value={0.13} /> */}
 
       </Grid>
-      <Grid xs={6} md={4} lg={6}>
-        <Indicator title='Precipitación' subtitle='Probabilidad' value={0.13} />
+
+      <Grid xs={6} md={4} lg={3}>
+
+        {indicators[3]}
+
       </Grid>
-      <Grid xs={6} sm={4} md={3} lg={6}>
+
+      <Grid xs={6} md={4} lg={3}>
+
+        {indicators[4]}
+
+      </Grid>
+
+      <Grid xs={6} md={4} lg={3}>
+
+        {indicators[5]}
+
+      </Grid>
+
+      <Grid xs={6} md={4} lg={3}>
+
+        {indicators[6]}
+
+      </Grid>
+
+      {/* <Grid xs={6} sm={4} md={3} lg={6}>
+
         <Summary></Summary>
-      </Grid>
+
+      </Grid> */}
+
       <Grid xs={12} md={6} lg={12} >
+
         <BasicTable />
+
       </Grid>
-      <Grid xs={12} lg={10}>
+
+      <Grid xs={12} lg={8}>
+
         <WeatherChart></WeatherChart>
+
       </Grid>
-      <Grid xs={12} lg={2}>
+
+      <Grid xs={12} lg={4}>
+
         <ControlPanel />
+
       </Grid>
     </Grid>
   )
