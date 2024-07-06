@@ -20,9 +20,9 @@ export default function ControlPanel() {
     {/* Datos de los elementos del Select */ }
 
     let items = [
-        { "name": "Precipitación", "description": "Cantidad de agua, en forma de lluvia, nieve o granizo, que cae sobre una superficie en un período específico." },
         { "name": "Humedad", "description": "Cantidad de vapor de agua presente en el aire, generalmente expresada como un porcentaje." },
-        { "name": "Nubosidad", "description": "Grado de cobertura del cielo por nubes, afectando la visibilidad y la cantidad de luz solar recibida." }
+        { "name": "Temperatura", "description": "Medida de calor o frío expresada generalmente en grados Celsius o Fahrenheit." },
+        { "name": "Velocidad del viento", "description":"Rapidez del aire en movimiento, medida generalmente en metros por segundo o kilómetros por hora." }
     ]
 
     let options = items.map((item, key) => <MenuItem key={key} value={key}>{item["name"]}</MenuItem>)

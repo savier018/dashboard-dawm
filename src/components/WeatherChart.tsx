@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
 
 const WeatherChart: React.FC = () => {
-    const [chartData, setChartData] = useState([['Fecha-Hora', 'Temperatura (°C)', 'Humedad (%)', 'Velocidad del viento (m/s)']]);
+    const [chartData, setChartData] = useState([['Fecha-Hora', 'Humedad (%)', 'Temperatura (°C)', 'Velocidad del viento (m/s)']]);
 
     useEffect(() => {
 
@@ -33,16 +33,15 @@ const WeatherChart: React.FC = () => {
                 data.push([timeFrom, temperatureCelsiusFixed, humedad, velocidadViento]);
             }
 
-            setChartData([['Fecha-Hora', 'Temperatura (°C)', 'Humedad (%)', 'Velocidad del viento (m/s)'], ...data]);
+            setChartData([['Fecha-Hora', 'Humedad (%)', 'Temperatura (°C)', 'Velocidad del viento (m/s)'], ...data]);
         })()
     }, [])
 
     const options = {
-        title: 'Temperatura, Humedad, Velocidad del Viento vs Hora',
+        title: 'Humedad, Temperatura, Velocidad del Viento vs Hora',
         hAxis: { 
-            title: 'Time',
             textStyle: {
-                fontSize: 10 // Ajusta el tamaño del texto
+                fontSize: 10 
             },
          },
         legend: { position: 'bottom' }

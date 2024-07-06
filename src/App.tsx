@@ -170,7 +170,7 @@ function App() {
 
       <Grid xs={12} lg={12}>
 
-        <WeatherChart></WeatherChart>
+        <WeatherChart ></WeatherChart>
 
       </Grid>
 
