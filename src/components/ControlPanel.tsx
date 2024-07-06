@@ -49,7 +49,7 @@ export default function ControlPanel() {
             sx={{
                 p: 2,
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
             }}
         >
 

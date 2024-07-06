@@ -1,10 +1,10 @@
 import Grid from '@mui/material/Unstable_Grid2';
 import BasicTable from './components/BasicTable';
 import Indicator from './components/Indicator';
-import Summary from './components/Summary';
 import ControlPanel from './components/ControlPanel';
 import WeatherChart from './components/WeatherChart';
 import Title from './components/Title';
+import Subtitle from './components/Subtitle'
 import { useEffect, useState } from 'react';
 import './App.css'
 
@@ -101,11 +101,14 @@ function App() {
         <Title />
 
       </Grid>
+
+      <Grid xs={6} md={4} lg={12}>
+        <Subtitle title='Indicadores' />
+      </Grid>
+
       <Grid xs={6} lg={4}>
 
         {indicators[0]}
-
-        {/* <Indicator title='Precipitación' subtitle='Probabilidad' value={0.13} /> */}
 
       </Grid>
 
@@ -113,15 +116,11 @@ function App() {
 
         {indicators[1]}
 
-        {/* <Indicator title='Precipitación' subtitle='Probabilidad' value={0.13} /> */}
-
       </Grid>
 
       <Grid xs={6} lg={4}>
 
         {indicators[2]}
-
-        {/* <Indicator title='Precipitación' subtitle='Probabilidad' value={0.13} /> */}
 
       </Grid>
 
@@ -155,10 +154,18 @@ function App() {
 
       </Grid> */}
 
+      <Grid xs={6} md={4} lg={12}>
+        <Subtitle title='Pronóstico del tiempo para 5 días cada 3 horas de la ciudad de Guayaquil' />
+      </Grid>
+
       <Grid xs={12} md={6} lg={12} >
 
         <BasicTable />
 
+      </Grid>
+
+      <Grid xs={6} md={4} lg={12}>
+        <Subtitle title='Gráfico multivariable' />
       </Grid>
 
       <Grid xs={12} lg={12}>

@@ -38,7 +38,7 @@ const WeatherChart: React.FC = () => {
     }, [])
 
     const options = {
-        title: 'Temperatura, humedad, velocidad del viento vs Hora',
+        title: 'Temperatura, Humedad, Velocidad del Viento vs Hora',
         hAxis: { 
             title: 'Time',
             textStyle: {
