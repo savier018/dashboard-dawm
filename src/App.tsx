@@ -5,6 +5,10 @@ import ControlPanel from './components/ControlPanel';
 import WeatherChart from './components/WeatherChart';
 import Title from './components/Title';
 import Subtitle from './components/Subtitle'
+import Clock from './components/Clock'
+import Indicador from './assets/Indicador.png';
+import Datos from './assets/Datos.png'
+import Grafico from './assets/grafico.png'
 import { useEffect, useState } from 'react';
 import './App.css'
 
@@ -13,6 +17,7 @@ function App() {
   {/* Variable de estado y función de actualización */ }
 
   let [indicators, setIndicators] = useState([])
+  let [selectedVariable, setSelectedVariable] = useState("");
 
   {/* Hook: useEffect */ }
 
@@ -102,8 +107,12 @@ function App() {
 
       </Grid>
 
-      <Grid xs={6} md={4} lg={12}>
-        <Subtitle title='Indicadores' />
+      <Grid xs={6} md={4} lg={10}>
+        <Subtitle title='Indicadores sobre la ciudad de Guayaquil' imageSrc={Indicador}/>
+      </Grid>
+
+      <Grid xs={6} md={4} lg={2}>
+        <Clock></Clock>
       </Grid>
 
       <Grid xs={6} lg={4}>
@@ -155,7 +164,7 @@ function App() {
       </Grid> */}
 
       <Grid xs={6} md={4} lg={12}>
-        <Subtitle title='Pronóstico del tiempo para 5 días cada 3 horas de la ciudad de Guayaquil' />
+        <Subtitle title='Pronóstico del tiempo para 5 días cada 3 horas de la ciudad de Guayaquil' imageSrc={Datos}/>
       </Grid>
 
       <Grid xs={12} md={6} lg={12} >
@@ -165,18 +174,18 @@ function App() {
       </Grid>
 
       <Grid xs={6} md={4} lg={12}>
-        <Subtitle title='Gráfico multivariable' />
+        <Subtitle title='Gráfico multivariable' imageSrc={Grafico}/>
       </Grid>
 
       <Grid xs={12} lg={12}>
 
-        <WeatherChart ></WeatherChart>
+        <WeatherChart selectedVariable={selectedVariable}></WeatherChart>
 
       </Grid>
 
       <Grid xs={12} lg={4}>
 
-        <ControlPanel />
+        <ControlPanel onVariableChange={setSelectedVariable} />
 
       </Grid>
     </Grid>

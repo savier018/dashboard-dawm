@@ -1,0 +1,16 @@
+.page-title {
+    background-color: #3d46eb;
+    padding: 1em;
+}
+
+.dashboard-icon {
+    width: 60px;
+    margin-right: 20px;
+}
+
+.subtitle-icon {
+    width: 30px;
+    margin-left: 20px;
+    margin-bottom: 8px;
+    margin-right: 10px;
+}

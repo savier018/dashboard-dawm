@@ -1,5 +1,6 @@
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import '../Indicator.css'
 
 interface Config {
     title?: String;
@@ -15,6 +16,7 @@ export default function Indicator(config: Config) {
               display: 'flex',
               flexDirection: 'column'
             }}
+            className="box-indicator"
           >
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
                 {config.title} 
