@@ -16,7 +16,7 @@ const Title: React.FC = () => {
       <Box className="nav-bar">
         <a href="#indicadores" className="nav-link">Indicadores</a>
         <a href="#tabla" className="nav-link">Tabla</a>
-        <a href="#grafico" className="nav-link">Gráfico</a>
+        <a href="#grafico" className="nav-link">Gráficos</a>
       </Box>
     </Box>
   );

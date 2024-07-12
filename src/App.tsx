@@ -7,6 +7,7 @@ import Title from './components/Title';
 import Subtitle from './components/Subtitle'
 import Clock from './components/Clock'
 import TemperatureChart from './components/TemperatureChart'
+import BarChart from './components/BarChart';
 import Indicador from './assets/Indicador.png';
 import Datos from './assets/Datos.png'
 import Grafico from './assets/grafico.png'
@@ -191,6 +192,12 @@ function App() {
       <Grid xs={12} lg={12}>
 
         <TemperatureChart></TemperatureChart>
+
+      </Grid>
+
+      <Grid xs={12} lg={12}>
+
+        <BarChart></BarChart>
 
       </Grid>
 
