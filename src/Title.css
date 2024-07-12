@@ -1,6 +1,13 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .page-title {
     background-color: #3d46eb;
     padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .dashboard-icon {
@@ -14,3 +21,22 @@
     margin-bottom: 8px;
     margin-right: 10px;
 }
+
+.nav-bar {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.nav-link:hover {
+    color: #d2d1d1;
+    text-decoration: underline;
+}
+

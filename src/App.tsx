@@ -6,6 +6,7 @@ import WeatherChart from './components/WeatherChart';
 import Title from './components/Title';
 import Subtitle from './components/Subtitle'
 import Clock from './components/Clock'
+import TemperatureChart from './components/TemperatureChart'
 import Indicador from './assets/Indicador.png';
 import Datos from './assets/Datos.png'
 import Grafico from './assets/grafico.png'
@@ -60,6 +61,10 @@ function App() {
       let longitude = location.getAttribute("longitude")
       dataToIndicators.push(["Longitud", "Valor", longitude])
 
+      let zonaHoraria = xml.getElementsByTagName("timezone")[0]
+      const valorZonaHoraria = zonaHoraria.textContent;
+      dataToIndicators.push(["Zona horaria", "Valor", valorZonaHoraria])
+
       let valorPrecipitacion = xml.getElementsByTagName("precipitation")[0]
       let probabilidadPrecipitacion = valorPrecipitacion.getAttribute("probability")
       dataToIndicators.push(["Precipitación", "Probabilidad", probabilidadPrecipitacion])
@@ -107,53 +112,59 @@ function App() {
 
       </Grid>
 
-      <Grid xs={6} md={4} lg={10}>
-        <Subtitle title='Indicadores sobre la ciudad de Guayaquil' imageSrc={Indicador}/>
-      </Grid>
-
-      <Grid xs={6} md={4} lg={2}>
+      <Grid xs={6} md={4} lg={12}>
         <Clock></Clock>
       </Grid>
 
-      <Grid xs={6} lg={4}>
+      <Grid xs={6} md={4} lg={12} id="indicadores">
+        <Subtitle title='Indicadores' imageSrc={Indicador} width='30%' />
+      </Grid>
+
+      <Grid xs={6} lg={6}>
 
         {indicators[0]}
 
       </Grid>
 
-      <Grid xs={6} lg={4}>
+      <Grid xs={6} md={4} lg={6}>
+
+        {indicators[6]}
+
+      </Grid>
+
+      <Grid xs={6} lg={6}>
 
         {indicators[1]}
 
       </Grid>
 
-      <Grid xs={6} lg={4}>
+      <Grid xs={6} md={4} lg={6}>
+
+        {indicators[7]}
+
+      </Grid>
+
+      <Grid xs={6} lg={6}>
 
         {indicators[2]}
 
       </Grid>
 
-      <Grid xs={6} md={4} lg={3}>
-
-        {indicators[3]}
-
-      </Grid>
-
-      <Grid xs={6} md={4} lg={3}>
-
-        {indicators[4]}
-
-      </Grid>
-
-      <Grid xs={6} md={4} lg={3}>
+      <Grid xs={6} md={4} lg={6}>
 
         {indicators[5]}
 
       </Grid>
 
-      <Grid xs={6} md={4} lg={3}>
+      <Grid xs={6} lg={6}>
 
-        {indicators[6]}
+        {indicators[3]}
+
+      </Grid>
+
+      <Grid xs={6} md={4} lg={6}>
+
+        {indicators[4]}
 
       </Grid>
 
@@ -163,8 +174,8 @@ function App() {
 
       </Grid> */}
 
-      <Grid xs={6} md={4} lg={12}>
-        <Subtitle title='Pronóstico del tiempo para 5 días cada 3 horas de la ciudad de Guayaquil' imageSrc={Datos}/>
+      <Grid xs={6} md={4} lg={12} id="tabla">
+        <Subtitle title='Pronóstico del tiempo para 5 días cada 3 horas' imageSrc={Datos} width='60%' />
       </Grid>
 
       <Grid xs={12} md={6} lg={12} >
@@ -173,8 +184,14 @@ function App() {
 
       </Grid>
 
-      <Grid xs={6} md={4} lg={12}>
-        <Subtitle title='Gráfico multivariable' imageSrc={Grafico}/>
+      <Grid xs={6} md={4} lg={12} id="grafico">
+        <Subtitle title='Gráfico multivariable' imageSrc={Grafico} width='30%' />
+      </Grid>
+
+      <Grid xs={12} lg={12}>
+
+        <TemperatureChart></TemperatureChart>
+
       </Grid>
 
       <Grid xs={12} lg={12}>
@@ -183,11 +200,12 @@ function App() {
 
       </Grid>
 
-      <Grid xs={12} lg={4}>
+      <Grid xs={12} lg={12}>
 
-        <ControlPanel onVariableChange={setSelectedVariable} />
+        <ControlPanel setSelectedVariable={setSelectedVariable} />
 
       </Grid>
+
     </Grid>
   )
 }

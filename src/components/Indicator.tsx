@@ -14,9 +14,12 @@ export default function Indicator(config: Config) {
             sx={{
               p: 2,
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
+              borderRadius: '10px',
+              boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.5)',
+              transition: 'background-color 0.3s ease'
             }}
-            className="box-indicator"
+            className='box-indicator'
           >
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
                 {config.title} 

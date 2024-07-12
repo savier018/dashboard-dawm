@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import '../TableStyles.css';
 
 export default function BasicTable() {
 
@@ -61,23 +62,23 @@ export default function BasicTable() {
     }, [])
 
     return (
-        <TableContainer component={Paper}>
-            <Table aria-label="simple table">
+        <TableContainer component={Paper} className="table-container">
+            <Table aria-label="simple table" className="custom-table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Hora (desde)</TableCell>
-                        <TableCell>Hora (hasta)</TableCell>
-                        <TableCell align="center">Temperatura (°C)</TableCell>
-                        <TableCell align="center">Velocidad del Viento (m/s)</TableCell>
-                        <TableCell align="center">Humedad (%)</TableCell>
-                        <TableCell align="center">Presión (hPa)</TableCell>
+                        <TableCell className="header-cell" sx={{ color: 'white', fontWeight: 'bold' }}>Hora (desde)</TableCell>
+                        <TableCell className="header-cell" sx={{ color: 'white', fontWeight: 'bold' }}>Hora (hasta)</TableCell>
+                        <TableCell align="center" className="header-cell" sx={{ color: 'white', fontWeight: 'bold' }}>Temperatura (°C)</TableCell>
+                        <TableCell align="center" className="header-cell" sx={{ color: 'white', fontWeight: 'bold' }}>Velocidad del Viento (m/s)</TableCell>
+                        <TableCell align="center" className="header-cell" sx={{ color: 'white', fontWeight: 'bold' }}>Humedad (%)</TableCell>
+                        <TableCell align="center" className="header-cell" sx={{ color: 'white', fontWeight: 'bold' }}>Presión (hPa)</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {weatherData.map((row, index) => (
                         <TableRow key={index}>
-                            <TableCell component="th" scope="row">{row.tiempoDesde}</TableCell>
-                            <TableCell component="th" scope="row">{row.tiempoHasta}</TableCell>
+                            <TableCell>{row.tiempoDesde}</TableCell>
+                            <TableCell>{row.tiempoHasta}</TableCell>
                             <TableCell align="center">{row.valorCelsiusFixedConGrado}</TableCell>
                             <TableCell align="center">{row.valorVelocidadViento}</TableCell>
                             <TableCell align="center">{row.valorHumedad}</TableCell>

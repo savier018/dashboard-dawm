@@ -1,0 +1,17 @@
+.table-container {
+    margin: 20px auto; 
+    width: 90%; 
+    max-width: 1100px;
+}
+
+.custom-table {
+    width: 100%; 
+    border-collapse: collapse;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.header-cell {
+    background-color: #3d46eb;
+}
+
