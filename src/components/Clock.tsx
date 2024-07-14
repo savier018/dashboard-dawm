@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import '../Subtitles.css';
+import morningImage from '../assets/sunrise.jpeg';
+import afternoonImage from '../assets/afternoon.jpeg';
+import nightImage from '../assets/night.png';
 
 const Clock: React.FC = () => {
   const [time, setTime] = useState(new Date());
@@ -25,6 +28,17 @@ const Clock: React.FC = () => {
     return date.toLocaleDateString(undefined, options);
   };
 
+  const getGreetingImage = (): string => {
+    const hours = time.getHours();
+    if (hours >= 6 && hours < 12) {
+      return morningImage;
+    } else if (hours >= 12 && hours < 18) {
+      return afternoonImage;
+    } else {
+      return nightImage;
+    }
+  };
+
   return (
     <Box className="clock-container" sx={
       { display: 'flex', 
@@ -40,6 +54,7 @@ const Clock: React.FC = () => {
       <Typography component="h1" variant="h3" color="black" gutterBottom textAlign="center" className="clock-time">
         {formatTime(time)}
       </Typography>
+      <img src={getGreetingImage()} alt="Greeting" style={{ width: '100%', height: 'auto' }} />
     </Box>
   );
 };
